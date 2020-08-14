@@ -315,11 +315,23 @@ new Vue({
 | Name         | Type   | Default | Description                                     |
 | ------------ | ------ | ------- | ----------------------------------------------- |
 | initialValue | String | ''      | Viewer's initial value                          |
+| options         | Object | following `defaultOptions` | Options of viewer. This is for initailize viewer. |
 | height       | String | '300px' | This prop can control the height of the viewer. |
+
+```js
+const defaultOptions = {
+  useDefaultHTMLSanitizer: true,
+  referenceDefinition: false,
+};
+```
 
 ```html
 <template>
-  <viewer :initialValue="viewerText" height="500px" />
+  <viewer
+    :initialValue="viewerText"
+    :options="viewerOptions"
+    height="500px"
+  />
 </template>
 <script>
   import '@toast-ui/editor/dist/toastui-editor-viewer.css';
@@ -332,7 +344,10 @@ new Vue({
     },
     data() {
       return {
-        viewerText: '# This is Viewer.\n Hello World.'
+        viewerText: '# This is Viewer.\n Hello World.',
+        viewerOptions: {
+          useDefaultHTMLSanitizer: false
+        }
       };
     }
   };
